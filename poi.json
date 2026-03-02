@@ -1,0 +1,605 @@
+[
+  {
+    "name": "Bampton LARC",
+    "venue": "Bampton Library and Resource Centre (LARC)",
+    "address_line1": "Old School, Station Road",
+    "address_line2": "",
+    "town": "Bampton",
+    "postcode": "EX16 9NG",
+    "country": "UK",
+    "website": "https://bamptonlarc.org.uk/",
+    "list_image_url": "",
+    "lat": 50.988938,
+    "lng": -3.489007,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Warm Space",
+        "service_day": "varies",
+        "service_time": "centre opening hours",
+        "service_notes": "",
+        "service_type": "warm space"
+      }
+    ]
+  },
+  {
+    "name": "Hele Lane Methodist Church",
+    "venue": "Hele Lane Methodist Church",
+    "address_line1": "Hele Lane",
+    "address_line2": "Black Dog",
+    "town": "Black Dog",
+    "postcode": "EX17 4QS",
+    "country": "UK",
+    "website": "https://www.helelane.org.uk/",
+    "list_image_url": "",
+    "lat": 50.875292,
+    "lng": -3.698421,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Fourth Sunday Feast",
+        "service_day": "Sunday",
+        "service_time": "12:00-13:00",
+        "service_notes": "fourth Sunday of every month",
+        "service_type": "meal"
+      }
+    ]
+  },
+  {
+    "name": "Bradninch Community Food Shed",
+    "venue": "Bradninch Baptist Church",
+    "address_line1": "Millway",
+    "address_line2": "",
+    "town": "Bradninch",
+    "postcode": "EX5 4NL",
+    "country": "UK",
+    "website": "https://devonconnect.org/activity/bradninch-community-food-shed",
+    "list_image_url": "https://devonconnect.org/storage/activities/14344/CrzaYVTPRIXVtW3sFoNBkqZNHk9T3kKNyjtZF8mF.jpg",
+    "lat": 50.826109,
+    "lng": -3.421174,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Community Food Shed",
+        "service_day": "Every day",
+        "service_time": "10:00-18:00",
+        "service_notes": "Open access - help yourself",
+        "service_type": "community fridge / food shed (foodbank)"
+      }
+    ]
+  },
+  {
+    "name": "Crediton Community Food Larder",
+    "venue": "Crediton Library",
+    "address_line1": "Belle Parade",
+    "address_line2": "",
+    "town": "Crediton",
+    "postcode": "EX17 2AA",
+    "country": "UK",
+    "website": "https://creditonfoodbank.org.uk/food-parcels/",
+    "list_image_url": "https://creditonfoodbank.org.uk/wp-content/uploads/2024/06/Web-Logo-Crediton.jpg",
+    "lat": 50.791254,
+    "lng": -3.656016,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Community Food Larder",
+        "service_day": "Mon, Tue, Fri",
+        "service_time": "Mon 18:00; Tue 10:00-12:00; Fri 10:00-12:00",
+        "service_notes": "Friday requires referral",
+        "service_type": "food parcels (foodbank)"
+      }
+    ]
+  },
+  {
+    "name": "Crediton Congregational Church",
+    "venue": "Crediton Congregational Church",
+    "address_line1": "98 High Street",
+    "address_line2": "",
+    "town": "Crediton",
+    "postcode": "EX17 3LF",
+    "country": "UK",
+    "website": "https://www.creditoncongregational.org/",
+    "list_image_url": "",
+    "lat": 50.791326,
+    "lng": -3.661801,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Causeway Coffee Drop-In",
+        "service_day": "Wednesday",
+        "service_time": "10:00-12:00",
+        "service_notes": "for people with learning disabilities, carers and friends",
+        "service_type": "coffee drop-in"
+      },
+      {
+        "service_label": "Coffee and Company",
+        "service_day": "Thursday",
+        "service_time": "10:00-11:30",
+        "service_notes": "",
+        "service_type": "coffee morning"
+      }
+    ]
+  },
+  {
+    "name": "Crediton Library",
+    "venue": "Crediton Library",
+    "address_line1": "Belle Parade",
+    "address_line2": "",
+    "town": "Crediton",
+    "postcode": "EX17 2AA",
+    "country": "UK",
+    "website": "https://www.devonlibraries.org.uk/web/arena/creditonlibrary",
+    "list_image_url": "",
+    "lat": 50.791254,
+    "lng": -3.656016,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Warm Space",
+        "service_day": "varies",
+        "service_time": "library opening hours",
+        "service_notes": "",
+        "service_type": "warm space"
+      }
+    ]
+  },
+  {
+    "name": "Crediton Methodist Church",
+    "venue": "Crediton Methodist Church",
+    "address_line1": "Union Road",
+    "address_line2": "",
+    "town": "Crediton",
+    "postcode": "EX17 3AW",
+    "country": "UK",
+    "website": "https://www.creditonmethodist.org.uk/",
+    "list_image_url": "",
+    "lat": 50.790247,
+    "lng": -3.656161,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Coffee Morning / Warm Space",
+        "service_day": "Friday",
+        "service_time": "10:00-12:00",
+        "service_notes": "",
+        "service_type": "coffee morning"
+      },
+      {
+        "service_label": "Coffee Morning / Warm Space",
+        "service_day": "Saturday",
+        "service_time": "10:00-11:30",
+        "service_notes": "",
+        "service_type": "coffee morning"
+      }
+    ]
+  },
+  {
+    "name": "Folklore Library and Archive",
+    "venue": "Folklore Library and Archive",
+    "address_line1": "Belle Parade",
+    "address_line2": "c/o Crediton Library",
+    "town": "Crediton",
+    "postcode": "EX17 2AA",
+    "country": "UK",
+    "website": "https://www.folklorelibrary.com/",
+    "list_image_url": "",
+    "lat": 50.791254,
+    "lng": -3.656016,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Open Archive / Warm Space",
+        "service_day": "varies",
+        "service_time": "library opening hours",
+        "service_notes": "",
+        "service_type": "warm space"
+      }
+    ]
+  },
+  {
+    "name": "The Bookery Crediton",
+    "venue": "The Bookery",
+    "address_line1": "21 High Street",
+    "address_line2": "",
+    "town": "Crediton",
+    "postcode": "EX17 3AH",
+    "country": "UK",
+    "website": "https://thebookery.org.uk/",
+    "list_image_url": "",
+    "lat": 50.790443,
+    "lng": -3.658779,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Soup and Stories",
+        "service_day": "varies",
+        "service_time": "12:30-14:00",
+        "service_notes": "until 12th Dec",
+        "service_type": "meal and social"
+      },
+      {
+        "service_label": "Community Lunch",
+        "service_day": "Friday",
+        "service_time": "varies",
+        "service_notes": "third Friday of every month",
+        "service_type": "meal"
+      }
+    ]
+  },
+  {
+    "name": "Cullompton Community Centre",
+    "venue": "Cullompton Community Centre",
+    "address_line1": "Pye Corner",
+    "address_line2": "",
+    "town": "Cullompton",
+    "postcode": "EX15 1JX",
+    "country": "UK",
+    "website": "https://cullomptoncommunitycentre.org.uk/",
+    "list_image_url": "https://wallpapers.com/images/hd/morning-coffee-pictures-btfkp0zb7m6tgbos.jpg",
+    "lat": 50.855971,
+    "lng": -3.391676,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Coffee Morning",
+        "service_day": "Friday",
+        "service_time": "10:00-11:30",
+        "service_notes": "",
+        "service_type": "coffee morning"
+      }
+    ]
+  },
+  {
+    "name": "Hemyock Community Fridge",
+    "venue": "Blackdown Healthy Living Centre",
+    "address_line1": "Riverside",
+    "address_line2": "",
+    "town": "Hemyock",
+    "postcode": "EX15 3SH",
+    "country": "UK",
+    "website": "https://foodsave.org.uk/hemyock-cf/",
+    "list_image_url": "https://bhlac.org.uk/wp-content/uploads/elementor/thumbs/larder-ql5bdxvvqeudt4ndnd1414p3zsx2i4ecpugreh7rsg.jpg",
+    "lat": 50.918338,
+    "lng": -3.224736,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Community Fridge",
+        "service_day": "Mon-Sun",
+        "service_time": "Mon/Thu 09:00-15:00; Tue/Wed/Fri 09:00-13:00; Sat/Sun 12:00-13:00",
+        "service_notes": "",
+        "service_type": "community fridge (foodbank)"
+      }
+    ]
+  },
+  {
+    "name": "Silverton Community Larder",
+    "venue": "Silverton Community Hall",
+    "address_line1": "Wyndham Road",
+    "address_line2": "",
+    "town": "Silverton",
+    "postcode": "EX5 4JZ",
+    "country": "UK",
+    "website": "https://www.recycledevon.org/community-groups/silverton-community-larder/",
+    "list_image_url": "",
+    "lat": 50.817578,
+    "lng": -3.481533,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Community Larder",
+        "service_day": "Every day",
+        "service_time": "Always open",
+        "service_notes": "",
+        "service_type": "fridge / larder (foodbank)"
+      }
+    ]
+  },
+  {
+    "name": "King Street Chapel Tiverton",
+    "venue": "King Street Chapel",
+    "address_line1": "King Street",
+    "address_line2": "",
+    "town": "Tiverton",
+    "postcode": "EX16 5JE",
+    "country": "UK",
+    "website": "http://www.kingstchapel.org.uk/",
+    "list_image_url": "https://www.kingstchapel.org.uk/images/0b26437c06b23cf884dfad6ae2cb1557.jpg",
+    "lat": 50.901986,
+    "lng": -3.49374,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Big Breakfast Sunday",
+        "service_day": "Sunday",
+        "service_time": "10:30-11:30",
+        "service_notes": "every fourth Sunday",
+        "service_type": "breakfast"
+      }
+    ]
+  },
+  {
+    "name": "ReROOTed Community Fridge",
+    "venue": "Tiverton Library",
+    "address_line1": "Phoenix House, Phoenix Lane",
+    "address_line2": "(Community Fridge in the library)",
+    "town": "Tiverton",
+    "postcode": "EX16 6SA",
+    "country": "UK",
+    "website": "https://sustainabletiverton.org.uk/projects/food/",
+    "list_image_url": "https://sustainabletiverton.org.uk/wp-content/uploads/elementor/thumbs/Final-rerooted-large-scaled-qk551l2k07vtugkr24d4e13529anw1hju29axg8bgg.webp",
+    "lat": 50.90142,
+    "lng": -3.485089,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Community Fridge (surplus fresh food)",
+        "service_day": "Mon, Tue, Thu, Fri",
+        "service_time": "Mon/Tue/Thu 10:00-11:30; Fri 13:00-14:30",
+        "service_notes": "One visit per day please",
+        "service_type": "community fridge (foodbank)"
+      }
+    ]
+  },
+  {
+    "name": "ReRooted Surplus Food Cafe",
+    "venue": "St George's Church Rooms",
+    "address_line1": "Fore Street",
+    "address_line2": "",
+    "town": "Tiverton",
+    "postcode": "EX16 6PJ",
+    "country": "UK",
+    "website": "https://sustainabletiverton.org.uk/projects/food/",
+    "list_image_url": "https://sustainabletiverton.org.uk/wp-content/uploads/elementor/thumbs/Final-rerooted-large-scaled-qk551l2k07vtugkr24d4e13529anw1hju29axg8bgg.webp",
+    "lat": 50.901285,
+    "lng": -3.487417,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "ReRooted Surplus Food Cafe",
+        "service_day": "Saturday",
+        "service_time": "last Saturday of every month",
+        "service_notes": "",
+        "service_type": "surplus food cafe"
+      }
+    ]
+  },
+  {
+    "name": "Salvation Army Tiverton",
+    "venue": "Salvation Army Hall",
+    "address_line1": "Chapel Street",
+    "address_line2": "",
+    "town": "Tiverton",
+    "postcode": "EX16 6DE",
+    "country": "UK",
+    "website": "https://www.salvationarmy.org.uk/tiverton",
+    "list_image_url": "https://www.salvationarmy.org.uk/themes/custom/salvation_army/logo.svg",
+    "lat": 50.907008,
+    "lng": -3.479336,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Tuesday Coffee Morning and Brunch",
+        "service_day": "Tuesday",
+        "service_time": "10:30-12:30",
+        "service_notes": "",
+        "service_type": "coffee morning and brunch"
+      }
+    ]
+  },
+  {
+    "name": "St Paul's Church, Westexe",
+    "venue": "St Paul's Church",
+    "address_line1": "Church Street",
+    "address_line2": "",
+    "town": "Tiverton",
+    "postcode": "EX16 5HU",
+    "country": "UK",
+    "website": "https://www.tivertonchurch.org/",
+    "list_image_url": "https://static.wixstatic.com/media/b252be_ea22e13c09504ceb93d440d4dc9b0c58~mv2.png/v1/fit/w_2500,h_1330,al_c/b252be_ea22e13c09504ceb93d440d4dc9b0c58~mv2.png",
+    "lat": 50.902523,
+    "lng": -3.492419,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Breakfast on the Go",
+        "service_day": "Thursday",
+        "service_time": "07:45-08:45",
+        "service_notes": "term time only, takeaway, outdoors",
+        "service_type": "breakfast"
+      },
+      {
+        "service_label": "Lunch on the Go",
+        "service_day": "Thursday",
+        "service_time": "11:30-13:00",
+        "service_notes": "",
+        "service_type": "lunch"
+      }
+    ]
+  },
+  {
+    "name": "Sunningmead Community Centre",
+    "venue": "Sunningmead Community Centre",
+    "address_line1": "Lazenby Road",
+    "address_line2": "",
+    "town": "Tiverton",
+    "postcode": "EX16 4AL",
+    "country": "UK",
+    "website": "https://sunningmead.org.uk/",
+    "list_image_url": "",
+    "lat": 50.902531,
+    "lng": -3.469721,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Warm Hub",
+        "service_day": "Weekdays",
+        "service_time": "09:00-17:00",
+        "service_notes": "",
+        "service_type": "warm space"
+      }
+    ]
+  },
+  {
+    "name": "The Living Room (St George's Extension)",
+    "venue": "St George's Church Extension",
+    "address_line1": "St George's Church Extension",
+    "address_line2": "Becks Square",
+    "town": "Tiverton",
+    "postcode": "EX16 6PJ",
+    "country": "UK",
+    "website": "https://www.tivertonchurch.org/community",
+    "list_image_url": "https://static.wixstatic.com/media/b252be_7c034a1ee2dc421c93a508022e2562f8~mv2.png/v1/crop/x_0,y_55,w_1080,h_961/fill/w_490,h_436,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Copy%20of%20Living%20Room%20Church%20Suite.png",
+    "lat": 50.901285,
+    "lng": -3.487417,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "The Living Room community cafe",
+        "service_day": "Tuesday",
+        "service_time": "10:00-12:00",
+        "service_notes": "",
+        "service_type": "social with refreshments"
+      }
+    ]
+  },
+  {
+    "name": "Tiverton Library",
+    "venue": "Tiverton Library",
+    "address_line1": "Phoenix House, Phoenix Lane",
+    "address_line2": "",
+    "town": "Tiverton",
+    "postcode": "EX16 6SA",
+    "country": "UK",
+    "website": "https://www.devonlibraries.org.uk/web/arena/tivertonlibrary",
+    "list_image_url": "",
+    "lat": 50.90142,
+    "lng": -3.485089,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Warm Space",
+        "service_day": "varies",
+        "service_time": "library opening hours",
+        "service_notes": "",
+        "service_type": "warm space"
+      }
+    ]
+  },
+  {
+    "name": "The Square Corner Uffculme",
+    "venue": "The Square Corner",
+    "address_line1": "The Square",
+    "address_line2": "",
+    "town": "Uffculme",
+    "postcode": "EX15 3AA",
+    "country": "UK",
+    "website": "https://www.squarecorner.org.uk/",
+    "list_image_url": "",
+    "lat": 50.906933,
+    "lng": -3.328376,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Warm Space",
+        "service_day": "Friday",
+        "service_time": "10:30-15:00",
+        "service_notes": "fortnightly",
+        "service_type": "warm space"
+      }
+    ]
+  },
+  {
+    "name": "Uff Comm Fridge",
+    "venue": "Uffculme Surgery (Hub)",
+    "address_line1": "Commercial Road",
+    "address_line2": "",
+    "town": "Uffculme",
+    "postcode": "EX15 3EB",
+    "country": "UK",
+    "website": "https://www.recycledevon.org/community-groups/uff-comm-fridge/",
+    "list_image_url": "https://www.recycledevon.org/wp-content/uploads/uff-comm-fridge-768x576.jpg",
+    "lat": 50.904777,
+    "lng": -3.330765,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Community Fridge",
+        "service_day": "Every day",
+        "service_time": "Always open",
+        "service_notes": "",
+        "service_type": "community fridge (foodbank)"
+      }
+    ]
+  },
+  {
+    "name": "Culm Valley Methodist Church Willand",
+    "venue": "Culm Valley Methodist Church",
+    "address_line1": "Gables Road",
+    "address_line2": "",
+    "town": "Willand",
+    "postcode": "EX15 2PL",
+    "country": "UK",
+    "website": "https://www.tivwell-methodists.org.uk/culm-valley",
+    "list_image_url": "",
+    "lat": 50.888978,
+    "lng": -3.374049,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Warm Space",
+        "service_day": "Thursday",
+        "service_time": "15:00-17:00",
+        "service_notes": "",
+        "service_type": "warm space"
+      }
+    ]
+  },
+  {
+    "name": "The Rest A While Day Centre",
+    "venue": "Rest A While Day Centre",
+    "address_line1": "Village centre",
+    "address_line2": "",
+    "town": "Witheridge",
+    "postcode": "EX16 8AH",
+    "country": "UK",
+    "website": "https://witheridge.online/directory/the-rest-a-while/",
+    "list_image_url": "",
+    "lat": 50.91633,
+    "lng": -3.700214,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Rest A While",
+        "service_day": "Monday-Saturday",
+        "service_time": "10:00-12:00",
+        "service_notes": "",
+        "service_type": "warm space"
+      }
+    ]
+  },
+  {
+    "name": "Witheridge Methodist Church",
+    "venue": "Witheridge Methodist Church",
+    "address_line1": "West Street",
+    "address_line2": "",
+    "town": "Witheridge",
+    "postcode": "EX16 8AA",
+    "country": "UK",
+    "website": "https://www.witheridgevoice.org/what-s-on",
+    "list_image_url": "",
+    "lat": 50.917153,
+    "lng": -3.703587,
+    "last_updated": "46023",
+    "services": [
+      {
+        "service_label": "Bacon Bap Coffee Morning",
+        "service_day": "Saturday",
+        "service_time": "10:00-13:00",
+        "service_notes": "1st Saturday of every month",
+        "service_type": "coffee morning"
+      }
+    ]
+  }
+]
