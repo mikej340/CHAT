@@ -11,6 +11,8 @@
 html,body{height:100%}
 body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:var(--page-bg);display:flex;flex-direction:column}
 .topbar{z-index:1020}
+.top-controls{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
+.nav-filters{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:flex-end}
 
 /* Map/List segmented toggle styling */
 #views.btn-group{
@@ -49,11 +51,10 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background
 }
 .main-shell{display:flex;flex-direction:column;flex:1;min-height:0}
 .filters{display:none;flex-direction:column;gap:.25rem}
-.filters.map-view .search-wrap,.filters.map-view #count{display:none!important}
-.filters [data-f="food"]{background:#f2f7ff;border-color:#a8c7ff;color:#1f4bb8}
-.filters [data-f="warm"]{background:#fff7ed;border-color:#ffd5a6;color:#9a4c00}
-.filters [data-f="foodbank"]{background:#f1fff1;border-color:#a7e3b5;color:#1e7a35}
-.filters .btn.on{font-weight:600;border-width:2px}
+[data-f="food"]{background:#f2f7ff;border-color:#a8c7ff;color:#1f4bb8}
+[data-f="warm"]{background:#fff7ed;border-color:#ffd5a6;color:#9a4c00}
+[data-f="foodbank"]{background:#f1fff1;border-color:#a7e3b5;color:#1e7a35}
+.btn[data-f].on{font-weight:600;border-width:2px}
 #map,#list{flex:1;min-height:0}
 #map{min-height:420px;background:#dce6ef}
 #list{display:none;overflow:auto;padding:.85rem;background:#eef3f8;box-sizing:border-box}
@@ -75,6 +76,8 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background
 .empty{padding:1rem;border:1px dashed #afbccb;border-radius:8px;background:#fff;color:#486581}
 @media(max-width:900px){#map{min-height:58vh}}
 @media(max-width:700px){
+ .top-controls{align-items:flex-start}
+ .nav-filters{justify-content:flex-start;width:100%}
  .poi-card{flex-direction:column;padding:.78rem}
  .img{width:100%;height:180px;max-height:42vw;align-self:stretch}
  .card-copy{order:2}
@@ -86,9 +89,17 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background
 <div class="topbar sticky-top shadow-sm">
  <nav class="navbar navbar-expand bg-white border-bottom">
   <div class="container-fluid">
-    <div class="btn-group" role="group" id="views" aria-label="Map and list view switcher">
-      <button type="button" class="btn active" data-v="map" aria-current="page">Map View</button>
-      <button type="button" class="btn" data-v="list">List View</button>
+    <div class="top-controls w-100">
+      <div class="btn-group" role="group" id="views" aria-label="Map and list view switcher">
+        <button type="button" class="btn active" data-v="map" aria-current="page">Map View</button>
+        <button type="button" class="btn" data-v="list">List View</button>
+      </div>
+      <div class="nav-filters" id="nav-filters" aria-label="Filters">
+        <button class="btn btn-sm btn-outline-secondary rounded-pill on" data-f="all" type="button">All</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" data-f="food" type="button">Food / Drink</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" data-f="foodbank" type="button">Foodbanks</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" data-f="warm" type="button">Warm Spaces</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -96,12 +107,6 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background
   <div class="filters" id="filters">
    <div class="search-wrap d-flex flex-wrap gap-2 align-items-center w-100">
     <input id="search" class="form-control form-control-sm" type="search" placeholder="Search by name, town, or service" aria-label="Search by name, town, or service" autocomplete="off"/>
-   </div>
-   <div class="d-flex flex-wrap gap-2 align-items-center w-100 mt-2">
-    <button class="btn btn-sm btn-outline-secondary rounded-pill on" data-f="all" type="button">All</button>
-    <button class="btn btn-sm btn-outline-secondary rounded-pill" data-f="food" type="button">Food / Drink</button>
-    <button class="btn btn-sm btn-outline-secondary rounded-pill" data-f="foodbank" type="button">Foodbanks</button>
-    <button class="btn btn-sm btn-outline-secondary rounded-pill" data-f="warm" type="button">Warm Spaces</button>
     <span class="count small text-secondary ms-auto" id="count"></span>
    </div>
   </div>
@@ -340,7 +345,7 @@ const setActiveView=(view)=>{
 };
 
 const setActiveFilter=(filter)=>{
- $$('#filters button').forEach(btn=>btn.classList.toggle('on',(btn.dataset.f||'all')===filter));
+ $$('[data-f]').forEach(btn=>btn.classList.toggle('on',(btn.dataset.f||'all')===filter));
 };
 
 const filtersEl=$('#filters');
@@ -369,7 +374,7 @@ $$('#views [data-v]').forEach(link=>link.onclick=(e)=>{
  if(onMap){applyMapFilter(); setTimeout(()=>map.invalidateSize(),0);}
 });
 
-$$('#filters button').forEach(b=>b.onclick=()=>{
+$$('[data-f]').forEach(b=>b.onclick=()=>{
  cur=b.dataset.f||'all'; setActiveFilter(cur);
  applyMapFilter();
  if(!listRendered)listRendered=true; render();
