@@ -438,6 +438,13 @@
         "service_time": "09:00-17:00",
         "service_notes": "",
         "service_type": "warm space"
+      },
+      {
+        "service_label": "Lunch on the Go",
+        "service_day": "Friday",
+        "service_time": "11:00-13:00",
+        "service_notes": "",
+        "service_type": "lunch"
       }
     ]
   },
