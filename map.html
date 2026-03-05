@@ -221,6 +221,7 @@ async function loadPOIData(){
   POI = data;
   console.info('Loaded POI from JSON:', POI.length);
   buildFromPOI();
+  applyStateToUI();
  }catch(err){
   console.error('Failed to load poi.json:', err);
   showDataError('The data file (poi.json) could not be loaded.');
@@ -282,16 +283,44 @@ function buildFromPOI(){
 }
 
 
-let cur='all';
-let query='';
+const DEFAULT_STATE={view:'map',filter:'all',query:''};
+const VALID_VIEWS=new Set(['map','list']);
+const VALID_FILTERS=new Set(['all','food','foodbank','warm']);
+const state={...DEFAULT_STATE};
 let listRendered=false; // lazy-render list to avoid loading dozens of images on initial map view
+
+const sanitizeState=(raw={})=>({
+ view:VALID_VIEWS.has(raw.view)?raw.view:DEFAULT_STATE.view,
+ filter:VALID_FILTERS.has(raw.filter)?raw.filter:DEFAULT_STATE.filter,
+ query:typeof raw.query==='string'?raw.query.trim().slice(0,100):DEFAULT_STATE.query
+});
+
+const readStateFromURL=()=>{
+ const params=new URLSearchParams(window.location.search);
+ return sanitizeState({
+  view:params.get('view')||DEFAULT_STATE.view,
+  filter:params.get('filter')||DEFAULT_STATE.filter,
+  query:params.get('q')||''
+ });
+};
+
+const writeStateToURL=({replace=false}={})=>{
+ const params=new URLSearchParams();
+ if(state.view!==DEFAULT_STATE.view)params.set('view',state.view);
+ if(state.filter!==DEFAULT_STATE.filter)params.set('filter',state.filter);
+ if(state.query)params.set('q',state.query);
+ const next=`${location.pathname}${params.toString()?`?${params}`:''}`;
+ if(next===`${location.pathname}${location.search}`)return;
+ const method=replace?'replaceState':'pushState';
+ history[method](null,'',next);
+};
 
 const render=()=>{
  const el=$('#list');
- const tokens=query.trim().toLowerCase();
+ const tokens=state.query.trim().toLowerCase();
  const filtered=POI.map((loc,i)=>{
   const c=cat(loc);
-  if(cur!=='all'&&c!==cur)return null;
+  if(state.filter!=='all'&&c!==state.filter)return null;
   if(tokens){
    const serviceText=(loc.services||[]).map(s=>`${s.label||''} ${s.type||''} ${s.day||''} ${s.time||''} ${s.notes||''}`).join(' ').toLowerCase();
    const hay=[loc.name,loc.venue,loc.address_line1,loc.address_line2,loc.town,loc.postcode,serviceText].filter(Boolean).join(' ').toLowerCase();
@@ -324,7 +353,7 @@ const render=()=>{
 const applyMapFilter=()=>{
  Object.entries(markers).forEach(([key,marker])=>{
   const c=markerCats[key];
-  const show=cur==='all'||c===cur;
+  const show=state.filter==='all'||c===state.filter;
   if(show){
    if(!map.hasLayer(marker))marker.addTo(map);
   }else if(map.hasLayer(marker)){
@@ -349,44 +378,74 @@ const setActiveFilter=(filter)=>{
  $$('[data-f]').forEach(btn=>btn.classList.toggle('on',(btn.dataset.f||'all')===filter));
 };
 
-const filtersEl=$('#filters');
-if(filtersEl){
- filtersEl.style.display='flex';
- filtersEl.classList.add('map-view');
-}
+const applyStateToUI=()=>{
+ const filtersEl=$('#filters');
+ const mapEl=$('#map');
+ const listEl=$('#list');
+ const searchEl=$('#search');
+ const onMap=state.view==='map';
+ setActiveView(state.view);
+ setActiveFilter(state.filter);
+ if(filtersEl){
+  filtersEl.style.display='flex';
+  filtersEl.classList.toggle('map-view',onMap);
+ }
+ if(searchEl && searchEl.value!==state.query)searchEl.value=state.query;
+ if(mapEl)mapEl.style.display=onMap?'block':'none';
+ if(listEl)listEl.style.display=onMap?'none':'block';
+ applyMapFilter();
+ if(!onMap){
+  if(!listRendered)listRendered=true;
+  render();
+ }else{
+  setTimeout(()=>map.invalidateSize(),0);
+ }
+};
+
+Object.assign(state,readStateFromURL());
 
 $('#list').addEventListener('click',e=>{
  const a=e.target.closest('.vom'); if(!a)return; e.preventDefault();
- const id=a.dataset.id,loc=POI[id],m=markers[id]; if(!loc||!m)return;
- setActiveView('map');
- $('#map').style.display='block'; $('#list').style.display='none'; $('#filters').style.display='flex';
- $('#filters').classList.add('map-view');
- setTimeout(()=>{map.invalidateSize(); map.setView([loc.lat,loc.lng],13); m.openPopup();},0);
+ const id=Number(a.dataset.id),loc=POI[id],m=markers[id]; if(!loc||!m)return;
+ state.view='map';
+ writeStateToURL();
+ applyStateToUI();
+ setTimeout(()=>{map.setView([loc.lat,loc.lng],13); m.openPopup();},0);
 });
 
 $$('#views [data-v]').forEach(link=>link.onclick=(e)=>{
  e.preventDefault();
- const v=link.dataset.v; setActiveView(v);
- const onMap=v==='map';
- $('#map').style.display=onMap?'block':'none'; $('#list').style.display=onMap?'none':'block';
- $('#filters').style.display='flex';
- $('#filters').classList.toggle('map-view',onMap);
- if(!onMap && !listRendered){render(); listRendered=true;}
- if(onMap){applyMapFilter(); setTimeout(()=>map.invalidateSize(),0);}
+ const v=link.dataset.v;
+ if(!VALID_VIEWS.has(v) || state.view===v)return;
+ state.view=v;
+ writeStateToURL();
+ applyStateToUI();
 });
 
 $$('[data-f]').forEach(b=>b.onclick=()=>{
- cur=b.dataset.f||'all'; setActiveFilter(cur);
- applyMapFilter();
- if(!listRendered)listRendered=true; render();
+ const next=b.dataset.f||'all';
+ if(!VALID_FILTERS.has(next) || state.filter===next)return;
+ state.filter=next;
+ writeStateToURL();
+ applyStateToUI();
 });
 
 const searchEl=$('#search');
 if(searchEl){
  searchEl.addEventListener('input',e=>{
-  query=e.target.value||''; if(!listRendered)listRendered=true; render();
+  state.query=(e.target.value||'').trimStart();
+  writeStateToURL({replace:true});
+  if(state.view==='list'){
+   if(!listRendered)listRendered=true;
+   render();
+  }
  });
 }
+
+window.addEventListener('popstate',()=>{
+ Object.assign(state,readStateFromURL());
+ applyStateToUI();
+});
 
 // tests / guardrails
 console.assert(true,'POI will be validated after load');
