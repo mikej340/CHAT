@@ -13,6 +13,14 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background
 .topbar{z-index:1020}
 .top-controls{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
 .nav-filters{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:flex-end}
+.nav-filters-label{display:none;font-size:.85rem;color:#627d98;font-weight:600}
+
+@media (min-width:992px){
+ .top-controls{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+ #views{justify-self:start}
+ .nav-filters{grid-column:2;justify-self:center;justify-content:center}
+ .nav-filters-label{display:inline-block}
+}
 
 /* Map/List segmented toggle styling */
 #views.btn-group{
@@ -96,6 +104,7 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background
         <button type="button" class="btn" data-v="list">List View</button>
       </div>
       <div class="nav-filters" id="nav-filters" aria-label="Filters">
+        <span class="nav-filters-label">Filter:</span>
         <button class="btn btn-sm btn-outline-secondary rounded-pill on" data-f="all" type="button">All</button>
         <button class="btn btn-sm btn-outline-secondary rounded-pill" data-f="food" type="button">Food / Drink</button>
         <button class="btn btn-sm btn-outline-secondary rounded-pill" data-f="foodbank" type="button">Foodbanks</button>
