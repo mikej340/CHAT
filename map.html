@@ -11,6 +11,15 @@
 html,body{height:100%}
 body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:var(--page-bg);display:flex;flex-direction:column}
 .topbar{z-index:1020}
+.top-controls{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
+.nav-filters{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:flex-end}
+.nav-filters-label{display:none;color:#627d98;font-size:.85rem;font-weight:600;letter-spacing:.01em}
+@media(min-width:992px){
+ .top-controls{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+ #views{justify-self:start}
+ .nav-filters{grid-column:2;justify-self:center;justify-content:center}
+ .nav-filters-label{display:inline-block}
+}
 
 /* Map/List segmented toggle styling */
 #views.btn-group{
@@ -49,11 +58,11 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background
 }
 .main-shell{display:flex;flex-direction:column;flex:1;min-height:0}
 .filters{display:none;flex-direction:column;gap:.25rem}
-.filters.map-view .search-wrap,.filters.map-view #count{display:none!important}
-.filters [data-f="food"]{background:#f2f7ff;border-color:#a8c7ff;color:#1f4bb8}
-.filters [data-f="warm"]{background:#fff7ed;border-color:#ffd5a6;color:#9a4c00}
-.filters [data-f="foodbank"]{background:#f1fff1;border-color:#a7e3b5;color:#1e7a35}
-.filters .btn.on{font-weight:600;border-width:2px}
+.filters.map-view .search-wrap{display:none!important}
+[data-f="food"]{background:#f2f7ff;border-color:#a8c7ff;color:#1f4bb8}
+[data-f="warm"]{background:#fff7ed;border-color:#ffd5a6;color:#9a4c00}
+[data-f="foodbank"]{background:#f1fff1;border-color:#a7e3b5;color:#1e7a35}
+.btn[data-f].on{font-weight:600;border-width:2px}
 #map,#list{flex:1;min-height:0}
 #map{min-height:420px;background:#dce6ef}
 #list{display:none;overflow:auto;padding:.85rem;background:#eef3f8;box-sizing:border-box}
@@ -69,10 +78,14 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background
 .h{margin:0 0 .25rem;font-size:1.02rem}
 .meta{font-size:.88rem;color:#486581;margin:.1rem 0}
 .meta.updated{color:#627d98;font-size:.8rem;margin-top:1rem}
+.meta-links a{display:inline-flex;align-items:center;gap:.28rem}
+.meta-links .link-icon{width:1em;height:1em;fill:currentColor;flex:0 0 auto}
 .poi-card ul{margin:.45rem 0 0;padding-left:1.1rem;font-size:.86rem}
 .empty{padding:1rem;border:1px dashed #afbccb;border-radius:8px;background:#fff;color:#486581}
 @media(max-width:900px){#map{min-height:58vh}}
 @media(max-width:700px){
+ .top-controls{align-items:flex-start}
+ .nav-filters{justify-content:flex-start;width:100%}
  .poi-card{flex-direction:column;padding:.78rem}
  .img{width:100%;height:180px;max-height:42vw;align-self:stretch}
  .card-copy{order:2}
@@ -84,9 +97,18 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background
 <div class="topbar sticky-top shadow-sm">
  <nav class="navbar navbar-expand bg-white border-bottom">
   <div class="container-fluid">
-    <div class="btn-group" role="group" id="views" aria-label="Map and list view switcher">
-      <button type="button" class="btn active" data-v="map" aria-current="page">Map View</button>
-      <button type="button" class="btn" data-v="list">List View</button>
+    <div class="top-controls w-100">
+      <div class="btn-group" role="group" id="views" aria-label="Map and list view switcher">
+        <button type="button" class="btn active" data-v="map" aria-current="page">Map View</button>
+        <button type="button" class="btn" data-v="list">List View</button>
+      </div>
+      <div class="nav-filters" id="nav-filters" aria-label="Filters">
+        <span class="nav-filters-label">Filter:</span>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill on" data-f="all" type="button">All</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" data-f="food" type="button">Food / Drink</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" data-f="foodbank" type="button">Foodbanks</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" data-f="warm" type="button">Warm Spaces</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -94,12 +116,6 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background
   <div class="filters" id="filters">
    <div class="search-wrap d-flex flex-wrap gap-2 align-items-center w-100">
     <input id="search" class="form-control form-control-sm" type="search" placeholder="Search by name, town, or service" aria-label="Search by name, town, or service" autocomplete="off"/>
-   </div>
-   <div class="d-flex flex-wrap gap-2 align-items-center w-100 mt-2">
-    <button class="btn btn-sm btn-outline-secondary rounded-pill on" data-f="all" type="button">All</button>
-    <button class="btn btn-sm btn-outline-secondary rounded-pill" data-f="food" type="button">Food / Drink</button>
-    <button class="btn btn-sm btn-outline-secondary rounded-pill" data-f="foodbank" type="button">Foodbanks</button>
-    <button class="btn btn-sm btn-outline-secondary rounded-pill" data-f="warm" type="button">Warm Spaces</button>
     <span class="count small text-secondary ms-auto" id="count"></span>
    </div>
   </div>
@@ -213,6 +229,7 @@ async function loadPOIData(){
   POI = data;
   console.info('Loaded POI from JSON:', POI.length);
   buildFromPOI();
+  applyStateToUI();
  }catch(err){
   console.error('Failed to load poi.json:', err);
   showDataError('The data file (poi.json) could not be loaded.');
@@ -274,16 +291,44 @@ function buildFromPOI(){
 }
 
 
-let cur='all';
-let query='';
+const DEFAULT_STATE={view:'map',filter:'all',query:''};
+const VALID_VIEWS=new Set(['map','list']);
+const VALID_FILTERS=new Set(['all','food','foodbank','warm']);
+const state={...DEFAULT_STATE};
 let listRendered=false; // lazy-render list to avoid loading dozens of images on initial map view
+
+const sanitizeState=(raw={})=>({
+ view:VALID_VIEWS.has(raw.view)?raw.view:DEFAULT_STATE.view,
+ filter:VALID_FILTERS.has(raw.filter)?raw.filter:DEFAULT_STATE.filter,
+ query:typeof raw.query==='string'?raw.query.trim().slice(0,100):DEFAULT_STATE.query
+});
+
+const readStateFromURL=()=>{
+ const params=new URLSearchParams(window.location.search);
+ return sanitizeState({
+  view:params.get('view')||DEFAULT_STATE.view,
+  filter:params.get('filter')||DEFAULT_STATE.filter,
+  query:params.get('q')||''
+ });
+};
+
+const writeStateToURL=({replace=false}={})=>{
+ const params=new URLSearchParams();
+ if(state.view!==DEFAULT_STATE.view)params.set('view',state.view);
+ if(state.filter!==DEFAULT_STATE.filter)params.set('filter',state.filter);
+ if(state.query)params.set('q',state.query);
+ const next=`${location.pathname}${params.toString()?`?${params}`:''}`;
+ if(next===`${location.pathname}${location.search}`)return;
+ const method=replace?'replaceState':'pushState';
+ history[method](null,'',next);
+};
 
 const render=()=>{
  const el=$('#list');
- const tokens=query.trim().toLowerCase();
+ const tokens=state.query.trim().toLowerCase();
  const filtered=POI.map((loc,i)=>{
   const c=cat(loc);
-  if(cur!=='all'&&c!==cur)return null;
+  if(state.filter!=='all'&&c!==state.filter)return null;
   if(tokens){
    const serviceText=(loc.services||[]).map(s=>`${s.label||''} ${s.type||''} ${s.day||''} ${s.time||''} ${s.notes||''}`).join(' ').toLowerCase();
    const hay=[loc.name,loc.venue,loc.address_line1,loc.address_line2,loc.town,loc.postcode,serviceText].filter(Boolean).join(' ').toLowerCase();
@@ -300,21 +345,23 @@ const render=()=>{
  el.innerHTML=filtered.map(({loc,i,c})=>{
   const u=safeImg(loc.list_image_url)||fbImg(loc,c);
   const addr=[loc.address_line1,loc.address_line2,`${loc.town} ${loc.postcode}`].filter(Boolean).join(', ');
-  const links=`${loc.website?`<a target=_blank href="${loc.website}">Website</a> · `:''}<a href="#" class="vom" data-id="${i}">View on map</a>`;
+  const websiteIcon='<svg class="link-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.25a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5Zm4.85 4H10.9a15.41 15.41 0 0 0-.64-2.5A5.27 5.27 0 0 1 12.85 5.25ZM8 2.67c.37 0 .98.86 1.42 2.58H6.58C7.02 3.53 7.63 2.67 8 2.67Zm-2.26.08a15.3 15.3 0 0 0-.64 2.5H3.15a5.27 5.27 0 0 1 2.59-2.5ZM2.67 8c0-.45.06-.88.17-1.3h2.05c-.05.43-.08.86-.08 1.3 0 .44.03.87.08 1.3H2.84A5.3 5.3 0 0 1 2.67 8Zm.48 2.75H5.1c.15.9.38 1.75.64 2.5a5.27 5.27 0 0 1-2.59-2.5ZM8 13.33c-.37 0-.98-.86-1.42-2.58h2.84c-.44 1.72-1.05 2.58-1.42 2.58Zm1.75-.08c.26-.75.49-1.6.64-2.5h1.95a5.27 5.27 0 0 1-2.59 2.5Zm.9-3.95c.05-.43.08-.86.08-1.3 0-.44-.03-.87-.08-1.3h2.05c.11.42.17.85.17 1.3s-.06.88-.17 1.3h-2.05Zm-1.47 0H6.82A13.2 13.2 0 0 1 6.75 8c0-.45.03-.9.07-1.3h2.36c.04.4.07.85.07 1.3 0 .45-.03.9-.07 1.3Z"/></svg>';
+  const mapPinIcon='<svg class="link-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.25a4.75 4.75 0 0 0-4.75 4.75c0 3.4 3.95 7.89 4.12 8.08a.84.84 0 0 0 1.26 0c.17-.19 4.12-4.68 4.12-8.08A4.75 4.75 0 0 0 8 1.25Zm0 6.25a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z"/></svg>';
+  const links=`${loc.website?`<a target=_blank href="${loc.website}">${websiteIcon}<span>Website</span></a> · `:''}<a href="#" class="vom" data-id="${i}">${mapPinIcon}<span>View on map</span></a>`;
   const updated=formatUpdated(loc.last_updated);
   const svc=(loc.services||[]).map(s=>{
    const bits=[s.day,s.time,s.notes].filter(Boolean).join(', ');
    return `<li><b>${s.label||''}</b>${bits?` - ${bits}`:''}${s.type?` (${s.type})`:''}</li>`;
   }).join('');
   const img=u?`<img class="img" src="${u}" loading="lazy" referrerpolicy="no-referrer" onerror="if(this.dataset.f)return;this.dataset.f=1;this.onerror=null;const f='${fbImg(loc,c)}';if(this.src!==f)this.src=f;">`:'';
-  return `<div class="poi-card ${c}">${img}<div class="card-copy"><h3 class="h">${loc.name}</h3>${loc.venue&&loc.venue!==loc.name?`<div class="meta">${loc.venue}</div>`:''}<div class="meta">${addr}</div><div class="meta">${links}</div>${svc?`<ul>${svc}</ul>`:''}${updated?`<div class="meta updated">Last updated: ${updated}</div>`:''}</div></div>`;
+  return `<div class="poi-card ${c}">${img}<div class="card-copy"><h3 class="h">${loc.name}</h3>${loc.venue&&loc.venue!==loc.name?`<div class="meta">${loc.venue}</div>`:''}<div class="meta">${addr}</div><div class="meta meta-links">${links}</div>${svc?`<ul>${svc}</ul>`:''}${updated?`<div class="meta updated">Last updated: ${updated}</div>`:''}</div></div>`;
  }).join('');
 };
 
 const applyMapFilter=()=>{
  Object.entries(markers).forEach(([key,marker])=>{
   const c=markerCats[key];
-  const show=cur==='all'||c===cur;
+  const show=state.filter==='all'||c===state.filter;
   if(show){
    if(!map.hasLayer(marker))marker.addTo(map);
   }else if(map.hasLayer(marker)){
@@ -336,47 +383,77 @@ const setActiveView=(view)=>{
 };
 
 const setActiveFilter=(filter)=>{
- $$('#filters button').forEach(btn=>btn.classList.toggle('on',(btn.dataset.f||'all')===filter));
+ $$('[data-f]').forEach(btn=>btn.classList.toggle('on',(btn.dataset.f||'all')===filter));
 };
 
-const filtersEl=$('#filters');
-if(filtersEl){
- filtersEl.style.display='flex';
- filtersEl.classList.add('map-view');
-}
+const applyStateToUI=()=>{
+ const filtersEl=$('#filters');
+ const mapEl=$('#map');
+ const listEl=$('#list');
+ const searchEl=$('#search');
+ const onMap=state.view==='map';
+ setActiveView(state.view);
+ setActiveFilter(state.filter);
+ if(filtersEl){
+  filtersEl.style.display='flex';
+  filtersEl.classList.toggle('map-view',onMap);
+ }
+ if(searchEl && searchEl.value!==state.query)searchEl.value=state.query;
+ if(mapEl)mapEl.style.display=onMap?'block':'none';
+ if(listEl)listEl.style.display=onMap?'none':'block';
+ applyMapFilter();
+ if(!onMap){
+  if(!listRendered)listRendered=true;
+  render();
+ }else{
+  setTimeout(()=>map.invalidateSize(),0);
+ }
+};
+
+Object.assign(state,readStateFromURL());
 
 $('#list').addEventListener('click',e=>{
  const a=e.target.closest('.vom'); if(!a)return; e.preventDefault();
- const id=a.dataset.id,loc=POI[id],m=markers[id]; if(!loc||!m)return;
- setActiveView('map');
- $('#map').style.display='block'; $('#list').style.display='none'; $('#filters').style.display='flex';
- $('#filters').classList.add('map-view');
- setTimeout(()=>{map.invalidateSize(); map.setView([loc.lat,loc.lng],13); m.openPopup();},0);
+ const id=Number(a.dataset.id),loc=POI[id],m=markers[id]; if(!loc||!m)return;
+ state.view='map';
+ writeStateToURL();
+ applyStateToUI();
+ setTimeout(()=>{map.setView([loc.lat,loc.lng],13); m.openPopup();},0);
 });
 
 $$('#views [data-v]').forEach(link=>link.onclick=(e)=>{
  e.preventDefault();
- const v=link.dataset.v; setActiveView(v);
- const onMap=v==='map';
- $('#map').style.display=onMap?'block':'none'; $('#list').style.display=onMap?'none':'block';
- $('#filters').style.display='flex';
- $('#filters').classList.toggle('map-view',onMap);
- if(!onMap && !listRendered){render(); listRendered=true;}
- if(onMap){applyMapFilter(); setTimeout(()=>map.invalidateSize(),0);}
+ const v=link.dataset.v;
+ if(!VALID_VIEWS.has(v) || state.view===v)return;
+ state.view=v;
+ writeStateToURL();
+ applyStateToUI();
 });
 
-$$('#filters button').forEach(b=>b.onclick=()=>{
- cur=b.dataset.f||'all'; setActiveFilter(cur);
- applyMapFilter();
- if(!listRendered)listRendered=true; render();
+$$('[data-f]').forEach(b=>b.onclick=()=>{
+ const next=b.dataset.f||'all';
+ if(!VALID_FILTERS.has(next) || state.filter===next)return;
+ state.filter=next;
+ writeStateToURL();
+ applyStateToUI();
 });
 
 const searchEl=$('#search');
 if(searchEl){
  searchEl.addEventListener('input',e=>{
-  query=e.target.value||''; if(!listRendered)listRendered=true; render();
+  state.query=(e.target.value||'').trimStart();
+  writeStateToURL({replace:true});
+  if(state.view==='list'){
+   if(!listRendered)listRendered=true;
+   render();
+  }
  });
 }
+
+window.addEventListener('popstate',()=>{
+ Object.assign(state,readStateFromURL());
+ applyStateToUI();
+});
 
 // tests / guardrails
 console.assert(true,'POI will be validated after load');
