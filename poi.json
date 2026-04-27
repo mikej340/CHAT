@@ -608,5 +608,28 @@
         "service_type": "coffee morning"
       }
     ]
-  }
+  },
+  {
+  "name": "Lapford Foodbank",
+  "venue": "The ARK",
+  "address_line1": "The Ark",
+  "address_line2": "",
+  "town": "Lapford",
+  "postcode": "EX17 6PZ",
+  "country": "UK",
+  "website": "https://www.lapfordcc.org.uk/Groups/338252/Lapford_Foodbank.aspx",
+  "list_image_url": "",
+  "lat": 50.904525,
+  "lng": -3.486347,
+  "last_updated": "46139",
+  "services": [
+    {
+      "service_label": "Lapford Foodbank",
+      "service_day": "Tuesday, Friday",
+      "service_time": "10:00-14:00",
+      "service_notes": "non-perishable items",
+      "service_type": "foodbank"
+    }
+  ]
+}
 ]
